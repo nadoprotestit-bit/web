@@ -18,14 +18,24 @@ export default async function handler(req, res) {
     const { bookingId } = req.body || {};
     if (!bookingId) return res.status(400).json({ error: "Missing bookingId" });
 
-    const key = `booking:${bookingId}`;
-    const booking = await redis.get(key);
-
+    const detailKey = `booking:${bookingId}`;
+    const booking = await redis.get(detailKey);
     if (!booking) return res.status(404).json({ error: "Booking not found" });
 
-    await redis.del(key);
+    // 1) Smaž detail
+    await redis.del(detailKey);
+
+    // 2) Smaž z indexu pro admin
     if (booking.date) {
       await redis.srem(`bookings_by_date:${booking.date}`, bookingId);
+    }
+
+    // 3) Hlavní: smaž i ze seznamu bookings:<date> (to používá availability)
+    if (booking.date) {
+      const dayKey = `bookings:${booking.date}`;
+      const dayBookings = (await redis.get(dayKey)) || [];
+      const filtered = dayBookings.filter((b) => b && b.bookingId !== bookingId);
+      await redis.set(dayKey, filtered);
     }
 
     return res.status(200).json({ success: true });
