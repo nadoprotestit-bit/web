@@ -585,6 +585,203 @@ body.theme-light .theme-toggle{background: rgba(247,248,252,.92)}
 #booking-modal textarea{min-height:120px;max-height:220px;}
 /* Hide admin-only controls in public UI */
 .admin-only{display:none !important;}
+
+/* ===== Mobile-only navigation (isolated; desktop unchanged) ===== */
+.hamburger{display:none; width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.06); backdrop-filter: blur(8px);
+  align-items:center;justify-content:center; flex-direction:column; gap:6px; padding:0; cursor:pointer;
+}
+.hamburger span{display:block;width:18px;height:2px;background:rgba(255,255,255,.85);border-radius:99px;}
+.hamburger:active{transform:scale(.98);}
+.mobile-nav{display:none;}
+body.is-mobile .links{display:none !important;}
+body.is-mobile .hamburger{display:flex;}
+body.is-mobile .mobile-nav{display:block; position:fixed; inset:0; z-index:9999;
+  background:rgba(0,0,0,.35); backdrop-filter: blur(2px);
+  opacity:0; pointer-events:none; transition:opacity .18s ease;
+}
+body.is-mobile.mobile-nav-open .mobile-nav{opacity:1; pointer-events:auto;}
+.mobile-nav-card{position:absolute; left:12px; right:12px; top:12px;
+  border-radius:20px; border:1px solid rgba(255,255,255,.14);
+  background:rgba(16,20,34,.86); box-shadow:0 18px 60px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+body.theme-light .mobile-nav-card{background:rgba(255,255,255,.92); border-color:rgba(0,0,0,.10);}
+.mobile-nav-head{display:flex; align-items:center; justify-content:space-between;
+  padding:14px 14px; border-bottom:1px solid rgba(255,255,255,.10);
+}
+body.theme-light .mobile-nav-head{border-bottom-color:rgba(0,0,0,.08);}
+.mobile-nav-title{font-weight:800; letter-spacing:.2px;}
+.mobile-nav-close{width:38px;height:38px;border-radius:14px;border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.06); color:inherit; cursor:pointer;
+}
+body.theme-light .mobile-nav-close{border-color:rgba(0,0,0,.12); background:rgba(0,0,0,.04);}
+.mobile-nav-links{display:grid; gap:10px; padding:14px;}
+.mobile-nav-links a{display:flex; align-items:center; justify-content:space-between;
+  padding:12px 14px; border-radius:16px; text-decoration:none; color:inherit;
+  border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04);
+}
+body.theme-light .mobile-nav-links a{border-color:rgba(0,0,0,.10); background:rgba(0,0,0,.03);}
+.mobile-nav-links a:active{transform:scale(.99);}
+.mobile-nav-cta{border-color:rgba(255,105,180,.30) !important;
+  background:linear-gradient(135deg, rgba(255,105,180,.26), rgba(168,85,247,.22)) !important;
+}
+
+/* Keep desktop spacing the same; on mobile give navwrap more room */
+body.is-mobile .navwrap{padding-inline:14px;}
+body.is-mobile .brand h2{font-size:18px;}
+
+
+
+/* === Light theme visibility fixes (desktop + mobile) === */
+body.theme-light .hamburger{ background: rgba(255,255,255,.92); border: 1px solid rgba(11,15,25,.14); }
+body.theme-light .hamburger span{ background: rgba(11,15,25,.86); }
+
+/* Make panels a bit whiter in light theme (esp. mobile) */
+body.theme-light{ --bg:#ffffff; }
+body.theme-light nav{ background: linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.72)); }
+body.theme-light .card,
+body.theme-light .hero-left,
+body.theme-light .hours-card,
+body.theme-light .box{ background: rgba(11,15,25,.02); }
+
+/* Ensure secondary buttons/controls are visible on light theme */
+body.theme-light .btn-secondary{ background: rgba(11,15,25,.04); }
+body.theme-light .btn-secondary:hover{ background: rgba(11,15,25,.06); }
+
+/* Slider arrows in light theme */
+body.theme-light .carousel-btn{
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(11,15,25,.14);
+}
+body.theme-light .carousel-btn:hover{ background: rgba(255,255,255,1); }
+
+/* Mobile menu overlay in light theme */
+body.theme-light body.is-mobile .mobile-nav{ background: rgba(255,255,255,.96); }
+
+
+
+/* === Subtle animations (safe) === */
+.card, .btn-secondary, #open-book, .carousel-btn, .theme-toggle{
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+.card:hover{ transform: translateY(-2px); }
+#open-book:hover{ transform: translateY(-1px); box-shadow: 0 16px 50px rgba(255,77,141,.22); }
+.btn-secondary:hover{ transform: translateY(-1px); }
+.carousel-btn:hover{ transform: translateY(-1px); }
+
+/* Mobile menu animation */
+body.is-mobile .mobile-nav{
+  transition: opacity .2s ease, transform .2s ease;
+  opacity: 0;
+  transform: translateY(-6px);
+}
+body.is-mobile.nav-open .mobile-nav{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+/* === Booking modal buttons: consistent + readable in light theme === */
+.booking-actions .btn-secondary,
+.booking-actions .cta{
+  margin-top: 0 !important; /* prevent CTA looking misaligned */
+}
+
+.booking-actions .cta{
+  background: linear-gradient(135deg, rgba(255,77,141,.92), rgba(124,58,237,.92));
+  border: 1px solid rgba(255,255,255,.18);
+  color: #0b0f19;
+  box-shadow: 0 14px 40px rgba(124,58,237,.18);
+}
+
+.booking-actions .cta:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 50px rgba(124,58,237,.22);
+}
+
+body.theme-light .booking-actions .cta{
+  color: #0b0f19;
+  background: linear-gradient(135deg, rgba(255,77,141,.95), rgba(124,58,237,.95));
+  border: 1px solid rgba(11,15,25,.08);
+  box-shadow: 0 16px 44px rgba(11,15,25,.10);
+}
+
+body.theme-light .booking-actions .btn-secondary{
+  background: rgba(11,15,25,.04);
+  border: 1px solid rgba(11,15,25,.12);
+  color: rgba(11,15,25,.86);
+}
+
+body.theme-light .booking-actions .btn-secondary:hover{
+  background: rgba(11,15,25,.06);
+}
+
+/* Mobile: full-width buttons for easier tapping */
+body.is-mobile .booking-actions{
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+body.is-mobile .booking-actions .btn-secondary,
+body.is-mobile .booking-actions .cta{
+  width: 100% !important;
+}
+
+
+
+/* === FINAL: Booking modal button sizing + consistent corners === */
+.booking-actions .btn-secondary,
+.booking-actions .cta{
+  border-radius: 14px !important;
+  padding: 12px 16px !important;
+  min-height: 44px;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+@media (min-width: 901px){
+  .booking-actions .btn-secondary,
+  .booking-actions .cta{
+    padding: 12px 18px !important;
+    min-height: 46px;
+    font-size: 15px;
+  }
+}
+
+body.is-mobile .booking-actions .btn-secondary,
+body.is-mobile .booking-actions .cta{
+  padding: 14px 16px !important;
+  min-height: 50px;
+  font-size: 16px;
+}
+
+
+
+/* === Light theme: reservation modal bottom area refinement === */
+body.theme-light .modal-card{
+  background: #ffffff;
+}
+
+body.theme-light .booking-actions{
+  background: rgba(11,15,25,.02);
+  border-top: 1px solid rgba(11,15,25,.08);
+  padding-top: 14px;
+}
+
+/* Improve visibility of Cancel button in light theme */
+body.theme-light .booking-actions .btn-secondary{
+  background: rgba(11,15,25,.06);
+  border: 1px solid rgba(11,15,25,.18);
+  color: rgba(11,15,25,.9);
+}
+
+body.theme-light .booking-actions .btn-secondary:hover{
+  background: rgba(11,15,25,.10);
+  border-color: rgba(11,15,25,.25);
+}
+
 </style>
 </head>
 <body>
@@ -594,6 +791,28 @@ body.theme-light .theme-toggle{background: rgba(247,248,252,.92)}
 <h2>Body Balance</h2>
 </div>
 <div class="links"><a href="#sluzby">Služby</a><a href="#cenik">Ceník</a><a href="#kontakt">Kontakt</a><a href="#reference">Hodnocení</a><a href="#oteviraci-doba">Otevírací doba</a><a href="#jak-to-funguje">Jak to funguje</a><a href="#kontakt" id="open-book">Rezervace</a></div>
+
+<button class="hamburger" id="mobileHamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileNav">
+  <span></span><span></span><span></span>
+</button>
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav-card">
+    <div class="mobile-nav-head">
+      <div class="mobile-nav-title">Menu</div>
+      <button class="mobile-nav-close" id="mobileNavClose" aria-label="Zavřít menu">✕</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="#sluzby">Služby</a>
+      <a href="#cenik">Ceník</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#reference">Hodnocení</a>
+      <a href="#oteviraci-doba">Otevírací doba</a>
+      <a href="#jak-to-funguje">Jak to funguje</a>
+      <a href="#" data-open-booking="1" class="mobile-nav-cta">Rezervace</a>
+    </div>
+  </div>
+</div>
+
 </div>
 </nav>
 <header class="hero" role="banner">
@@ -752,6 +971,75 @@ window.addEventListener('DOMContentLoaded', () => {
   // ---------- Helpers ----------
   const $  = (sel, root=document) => root.querySelector(sel);
   const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+
+  // ---------- Mobile detect (only adds class; desktop untouched) ----------
+  const uaMobile = (navigator.userAgentData && navigator.userAgentData.mobile) ||
+                   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  if (uaMobile) document.body.classList.add('is-mobile');
+
+  // ---------- Mobile menu (only works when body has is-mobile) ----------
+  const hamburger = $('#mobileHamburger');
+  const mobileNav = $('#mobileNav');
+  const mobileClose = $('#mobileNavClose');
+
+  const closeMobileNav = () => {
+    document.body.classList.remove('mobile-nav-open');
+    hamburger?.setAttribute('aria-expanded','false');
+    mobileNav?.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  };
+  const openMobileNav = () => {
+    document.body.classList.add('mobile-nav-open');
+    hamburger?.setAttribute('aria-expanded','true');
+    mobileNav?.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  if (hamburger && mobileNav && document.body.classList.contains('is-mobile')) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMobileNav() : openMobileNav();
+    }, {passive:true});
+
+    mobileClose?.addEventListener('click', closeMobileNav, {passive:true});
+
+    // close on backdrop tap
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) closeMobileNav();
+    });
+
+    // close on link click + support booking CTA
+    mobileNav.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const openBooking = a.getAttribute('data-open-booking');
+        const href = a.getAttribute('href') || '';
+        closeMobileNav();
+
+        if (openBooking) {
+          e.preventDefault();
+          // reuse existing booking logic
+          const btn = document.getElementById('open-book') || document.getElementById('cta-book');
+          btn?.click();
+          return;
+        }
+
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const y = target.getBoundingClientRect().top + window.pageYOffset - 90;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileNav();
+    });
+  }
+
 
   // ---------- FAQ toggle ----------
   $$('.faq-item button').forEach((btn) => {
