@@ -19,11 +19,14 @@ export default async function handler(req, res) {
     if (!bookingId) return res.status(400).json({ error: "Missing bookingId" });
 
     const key = `booking:${bookingId}`;
+    const booking = await redis.get(key);
 
-    const exists = await redis.get(key);
-    if (!exists) return res.status(404).json({ error: "Booking not found" });
+    if (!booking) return res.status(404).json({ error: "Booking not found" });
 
     await redis.del(key);
+    if (booking.date) {
+      await redis.srem(`bookings_by_date:${booking.date}`, bookingId);
+    }
 
     return res.status(200).json({ success: true });
   } catch (err) {
