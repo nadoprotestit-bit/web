@@ -1,13 +1,19 @@
 import { Redis } from "@upstash/redis";
 
 const redis = new Redis({
-  url: process.env.KV_REST_API_URL,
-  token: process.env.KV_REST_API_TOKEN,
+  url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
 });
 
 function toMinutes(hhmm) {
   const [h, m] = hhmm.split(":").map(Number);
   return h * 60 + m;
+}
+
+function minutesToHHMM(min) {
+  const h = String(Math.floor(min / 60)).padStart(2, "0");
+  const m = String(min % 60).padStart(2, "0");
+  return `${h}:${m}`;
 }
 
 function overlaps(aStart, aEnd, bStart, bEnd) {
@@ -19,7 +25,7 @@ const SERVICE_DUR = {
   "celotelova": 120,
   "masaz-sije": 40,
   "detska": 40,
-  "lymfodrenaz": 30
+  "lymfodrenaz": 30,
 };
 
 export default async function handler(req, res) {
@@ -28,53 +34,64 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Use POST method" });
     }
 
-    const { name, phone, email, serviceKey, date, startTime, note } = req.body;
+    const { name, phone, email, serviceKey, serviceName, date, startTime, note } = req.body || {};
 
     if (!name || !phone || !serviceKey || !date || !startTime) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    const duration = SERVICE_DUR[serviceKey] || 60;
+    const durationMin = SERVICE_DUR[serviceKey] || 60;
 
     const start = toMinutes(startTime);
-    const end = start + duration;
+    const end = start + durationMin;
+    const endTime = minutesToHHMM(end);
 
-    const key = `bookings:${date}`;
-
-    const bookings = await redis.get(key) || [];
+    // --- 1) Načteme rezervace pro den (pro kolize + availability) ---
+    const dayKey = `bookings:${date}`;
+    const bookings = (await redis.get(dayKey)) || [];
 
     // kontrola kolize
-    const collides = bookings.some(b =>
-      overlaps(start, end, b.start, b.end)
-    );
-
+    const collides = bookings.some((b) => overlaps(start, end, b.start, b.end));
     if (collides) {
       return res.status(409).json({ error: "Time slot already taken" });
     }
 
+    const bookingId = crypto.randomUUID();
+    const createdAt = new Date().toISOString();
+
     const booking = {
-      id: crypto.randomUUID(),
-      name,
-      phone,
-      email,
+      bookingId,
+      createdAt,
+
+      name: String(name).trim(),
+      phone: String(phone).trim(),
+      email: (email || "").toString().trim(),
+
       serviceKey,
+      serviceName: (serviceName || "").toString().trim(),
+
       date,
+      startTime,
+      endTime,
+      durationMin,
+
+      // pro availability výpočty
       start,
       end,
-      note: note || "",
-      createdAt: new Date().toISOString()
+
+      note: (note || "").toString().trim(),
     };
 
+    // --- 2) Uložíme pro availability (seznam v jednom dni) ---
     bookings.push(booking);
+    await redis.set(dayKey, bookings);
 
-    await redis.set(key, bookings);
+    // --- 3) Uložíme i “detail” pro admin a index podle data ---
+    await redis.set(`booking:${bookingId}`, booking);
+    await redis.sadd(`bookings_by_date:${date}`, bookingId);
 
-    return res.json({
-      success: true,
-      bookingId: booking.id
-    });
-
+    return res.json({ success: true, bookingId, endTime });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err?.message || "Server error" });
   }
 }
