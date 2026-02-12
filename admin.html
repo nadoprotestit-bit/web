@@ -1,192 +1,318 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Body Balance – Admin</title>
-  <style>
-    :root { color-scheme: dark; }
-    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0b0f18; color:#e9eefc; }
-    .wrap { max-width: 980px; margin: 28px auto; padding: 0 14px; }
-    .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); border-radius: 16px; padding: 16px; }
-    h1 { margin: 0 0 10px; font-size: 22px; }
-    .row { display:flex; gap:10px; flex-wrap: wrap; align-items: end; }
-    label { display:block; font-size: 12px; opacity:.85; margin: 0 0 6px; }
-    input { width: 260px; max-width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.25); color:#e9eefc; }
-    button { padding: 10px 12px; border-radius: 12px; border: 0; cursor:pointer; font-weight: 700; }
-    .btn { background: #ff4d8d; color: #0b0f18; }
-    .btn2 { background: rgba(255,255,255,.12); color:#e9eefc; border: 1px solid rgba(255,255,255,.14); }
-    table { width:100%; border-collapse: collapse; margin-top: 14px; }
-    th, td { text-align:left; padding: 10px; border-bottom: 1px solid rgba(255,255,255,.10); font-size: 14px; vertical-align: top; }
-    th { font-size: 12px; opacity:.8; }
-    .muted { opacity:.75; font-size: 12px; }
-    .danger { background: rgba(255,80,80,.15); border: 1px solid rgba(255,80,80,.25); color:#ffd2d2; }
-    .toast { margin-top: 10px; font-size: 13px; opacity:.9; }
-    .pill { display:inline-block; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.12); font-size: 12px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Body Balance – Admin</title>
+
+<style>
+:root { color-scheme: dark; }
+
+body {
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:#0b0f18;
+  color:#e9eefc;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+h1 {
+  margin-top:0;
+  font-size: 26px;
+}
+
+.row {
+  display:flex;
+  gap:12px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+label {
+  display:block;
+  font-size: 12px;
+  opacity:.8;
+  margin-bottom:6px;
+}
+
+input {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.3);
+  color:#fff;
+  width: 250px;
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor:pointer;
+  font-weight: 600;
+  transition:.2s;
+}
+
+.btn-main {
+  background: #ff4d8d;
+  color: #0b0f18;
+}
+
+.btn-main:hover {
+  background:#ff6aa0;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,.1);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,.18);
+}
+
+#admin-table {
+  width:100%;
+  border-collapse: collapse;
+  margin-top:25px;
+}
+
+#admin-table th,
+#admin-table td {
+  padding:14px;
+  text-align:left;
+}
+
+#admin-table th {
+  background: rgba(255,255,255,.08);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+#admin-table tr:nth-child(even) {
+  background: rgba(255,255,255,.03);
+}
+
+.today-highlight {
+  background: rgba(255,255,255,.06) !important;
+}
+
+.cancel-btn {
+  background:#e5484d;
+  color:white;
+  padding:6px 12px;
+  border-radius:8px;
+}
+
+.cancel-btn:hover {
+  background:#ff6369;
+}
+
+.toast {
+  margin-top:10px;
+  font-size:14px;
+  opacity:.9;
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>Admin – Rezervace</h1>
-      <div class="row">
-        <div>
-          <label>Admin klíč</label>
-          <input id="k" type="password" placeholder="Zadejte admin klíč" />
-          <div class="muted">Tip: klíč se uloží v prohlížeči (jen na tomto zařízení).</div>
-        </div>
-        <div>
-          <label>Datum</label>
-          <input id="d" type="date" />
-        </div>
-        <button class="btn" id="load">Načíst</button>
-        <button class="btn2" id="csv">Stáhnout CSV</button>
-      </div>
-      <div class="toast" id="msg"></div>
 
-      <div style="margin-top:12px" class="muted">
-        Endpointy: <span class="pill">/api/admin-list</span> <span class="pill">/api/admin-cancel</span>
+<div class="wrap">
+  <div class="card">
+    <h1>Admin – Rezervace</h1>
+
+    <div class="row">
+      <div>
+        <label>Admin klíč</label>
+        <input id="adminKey" type="password" placeholder="Zadejte admin klíč">
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Čas</th>
-            <th>Služba</th>
-            <th>Jméno</th>
-            <th>Telefon</th>
-            <th>Poznámka</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="t"></tbody>
-      </table>
+      <div>
+        <label>Datum</label>
+        <input id="dateInput" type="date">
+      </div>
+
+      <button class="btn-main" id="loadBtn">Načíst</button>
+      <button class="btn-secondary" id="refreshBtn">🔄 Obnovit</button>
+      <button class="btn-secondary" id="csvBtn">Stáhnout CSV</button>
     </div>
+
+    <div class="toast" id="msg"></div>
+
+    <table id="admin-table">
+      <thead>
+        <tr>
+          <th>Čas</th>
+          <th>Jméno</th>
+          <th>Telefon</th>
+          <th>Email</th>
+          <th>Služba</th>
+          <th>Akce</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
   </div>
+</div>
 
 <script>
-  const $ = (s) => document.querySelector(s);
-  const keyInput = $("#k");
-  const dateInput = $("#d");
-  const msg = $("#msg");
-  const tbody = $("#t");
-  const LSKEY = "bb_admin_key";
-  let lastItems = [];
+const $ = s => document.querySelector(s);
 
-  // init
-  keyInput.value = localStorage.getItem(LSKEY) || "";
-  const today = new Date();
-  dateInput.value = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+const adminKeyInput = $("#adminKey");
+const dateInput = $("#dateInput");
+const msg = $("#msg");
+const tbody = $("#admin-table tbody");
 
-  function setMsg(text, ok=true){
-    msg.textContent = text;
-    msg.style.color = ok ? "rgba(233,238,252,.9)" : "#ffb3b3";
-  }
+const LSKEY = "bb_admin_key";
+adminKeyInput.value = localStorage.getItem(LSKEY) || "";
 
-  async function api(path, options={}){
-    const key = keyInput.value.trim();
-    if (!key) throw new Error("Zadejte admin klíč.");
-    localStorage.setItem(LSKEY, key);
+const today = new Date().toISOString().slice(0,10);
+dateInput.value = today;
 
-    const res = await fetch(path, {
-      ...options,
-      headers: {
-        "x-admin-key": key,
-        "Content-Type": "application/json",
-        ...(options.headers || {})
-      }
-    });
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(json.error || "Chyba API");
-    return json;
-  }
+let lastItems = [];
 
-  function render(items){
-    lastItems = items || [];
-    tbody.innerHTML = "";
-    if (!items || !items.length){
-      tbody.innerHTML = `<tr><td colspan="6" class="muted">Pro tento den nejsou žádné rezervace.</td></tr>`;
-      return;
+function setMsg(text, ok=true){
+  msg.textContent = text;
+  msg.style.color = ok ? "#e9eefc" : "#ffb3b3";
+}
+
+async function api(path, options={}){
+  const key = adminKeyInput.value.trim();
+  if(!key) throw new Error("Zadejte admin klíč.");
+  localStorage.setItem(LSKEY, key);
+
+  const res = await fetch(path, {
+    ...options,
+    headers: {
+      "x-admin-key": key,
+      "Content-Type": "application/json",
+      ...(options.headers || {})
     }
-
-    for (const b of items){
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><b>${b.startTime || ""}</b></td>
-        <td>${(b.serviceName || b.serviceKey || "").toString()}</td>
-        <td>${(b.name || "").toString()}</td>
-        <td>${(b.phone || "").toString()}</td>
-        <td class="muted">${(b.note || "").toString()}</td>
-        <td><button class="danger" data-id="${b.bookingId}">Zrušit</button></td>
-      `;
-      tbody.appendChild(tr);
-    }
-
-    tbody.querySelectorAll("button[data-id]").forEach(btn => {
-      btn.addEventListener("click", async () => {
-        const id = btn.getAttribute("data-id");
-        if (!confirm("Opravdu zrušit rezervaci?")) return;
-        try{
-          await api("/api/admin-cancel", { method:"POST", body: JSON.stringify({ bookingId: id }) });
-          setMsg("Rezervace zrušena ✅");
-          // reload
-          load();
-        }catch(e){
-          setMsg(e.message, false);
-        }
-      });
-    });
-  }
-
-  async function load(){
-    try{
-      setMsg("Načítám…");
-      const date = dateInput.value;
-      const data = await api(`/api/admin-list?date=${encodeURIComponent(date)}`);
-      render(data.items);
-      setMsg(`Načteno: ${data.items.length} rezervací`);
-    }catch(e){
-      setMsg(e.message, false);
-      render([]);
-    }
-  }
-
-  function toCSV(items){
-    const rows = [
-      ["date","startTime","service","name","phone","email","note","bookingId"]
-    ];
-    for (const b of items){
-      rows.push([
-        b.date || "",
-        b.startTime || "",
-        (b.serviceName || b.serviceKey || "").toString(),
-        (b.name || "").toString(),
-        (b.phone || "").toString(),
-        (b.email || "").toString(),
-        (b.note || "").toString().replace(/\n/g," "),
-        b.bookingId || ""
-      ]);
-    }
-    return rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
-  }
-
-  $("#load").addEventListener("click", load);
-  $("#csv").addEventListener("click", () => {
-    const csv = toCSV(lastItems);
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `rezervace-${dateInput.value}.csv`;
-    a.click();
-    URL.revokeObjectURL(a.href);
   });
 
-  // enter to load
-  keyInput.addEventListener("keydown", (e) => { if (e.key === "Enter") load(); });
-  dateInput.addEventListener("change", load);
+  const json = await res.json();
+  if(!res.ok) throw new Error(json.error || "Chyba API");
+  return json;
+}
 
-  // auto load
-  load();
+function render(items){
+  lastItems = items;
+  tbody.innerHTML = "";
+
+  if(!items.length){
+    tbody.innerHTML = `<tr><td colspan="6">Pro tento den nejsou žádné rezervace.</td></tr>`;
+    return;
+  }
+
+  items.forEach(item => {
+    const tr = document.createElement("tr");
+
+    if(dateInput.value === today){
+      tr.classList.add("today-highlight");
+    }
+
+    tr.innerHTML = `
+      <td><b>${item.startTime}</b></td>
+      <td>${item.name}</td>
+      <td>${item.phone}</td>
+      <td>${item.email || "-"}</td>
+      <td>${item.serviceName || item.serviceKey}</td>
+      <td>
+        <button class="cancel-btn" data-id="${item.bookingId}">
+          Zrušit
+        </button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+
+  attachCancelHandlers();
+}
+
+function attachCancelHandlers(){
+  document.querySelectorAll(".cancel-btn").forEach(btn => {
+    btn.onclick = async () => {
+
+      const confirmed = confirm("Opravdu chcete tuto rezervaci zrušit?");
+      if(!confirmed) return;
+
+      const id = btn.dataset.id;
+
+      try{
+        await api("/api/admin-cancel", {
+          method:"POST",
+          body: JSON.stringify({ bookingId:id })
+        });
+
+        setMsg("Rezervace zrušena ✅");
+        loadBookings();
+      }catch(e){
+        setMsg(e.message, false);
+      }
+    };
+  });
+}
+
+async function loadBookings(){
+  try{
+    setMsg("Načítám...");
+    const date = dateInput.value;
+    const data = await api(`/api/admin-list?date=${date}`);
+    render(data.items);
+    setMsg(`Načteno ${data.items.length} rezervací`);
+  }catch(e){
+    setMsg(e.message, false);
+    render([]);
+  }
+}
+
+function toCSV(items){
+  const rows = [["date","startTime","service","name","phone","email","bookingId"]];
+  items.forEach(b=>{
+    rows.push([
+      b.date,
+      b.startTime,
+      b.serviceName || b.serviceKey,
+      b.name,
+      b.phone,
+      b.email || "",
+      b.bookingId
+    ]);
+  });
+  return rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
+}
+
+$("#loadBtn").onclick = loadBookings;
+$("#refreshBtn").onclick = loadBookings;
+
+$("#csvBtn").onclick = ()=>{
+  const csv = toCSV(lastItems);
+  const blob = new Blob([csv], {type:"text/csv"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `rezervace-${dateInput.value}.csv`;
+  a.click();
+};
+
+loadBookings();
 </script>
+
 </body>
 </html>
