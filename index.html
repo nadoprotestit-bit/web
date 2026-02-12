@@ -1,488 +1,989 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="cs">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Masážní salón Body Balance</title>
-  <meta name="description" content="Profesionální masáže: relaxační, léčebné, sportovní. Objednejte se online. Dárkové poukazy.">
-  <meta name="keywords" content="masáže, relaxace, sportovní masáž, dárkové poukazy, terapie">
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Body Balance Říčany | Masáže a péče o tělo</title>
+<meta content="Body Balance v Říčanech – relaxační a regenerační masáže, lymfodrenáž a péče o tělo. Jednoduchá online rezervace." name="description"/>
+<meta content="masáže, relaxace, sportovní masáž, dárkové poukazy, terapie" name="keywords"/>
+<link href="data:;base64,iVBORw0KGgo=" rel="icon"/>
+<style>
+:root{
+  --bg:#0b0f19;
+  --panel: rgba(255,255,255,.05);
+  --text:#e8ecf5;
+  --muted: rgba(232,236,245,.72);
+  --line: rgba(255,255,255,.12);
+  --accent:#ff4d8d;
+  --accent2:#7c3aed;
+  --shadow: 0 18px 60px rgba(0,0,0,.45);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 700px at 10% 10%, rgba(124,58,237,.35), transparent 55%),
+    radial-gradient(900px 600px at 90% 15%, rgba(255,77,141,.30), transparent 55%),
+    radial-gradient(900px 700px at 50% 110%, rgba(34,211,238,.12), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1180px;margin:0 auto;padding:22px}
 
-  <style>
-    :root{--bg:#fff5f7;--card:#fff;--accent:#ff4081;--muted:#555;--accent-secondary:#ff6b9d;--accent-light:#ffe0e8}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:#222;line-height:1.5}
-    .container{max-width:1200px;margin:0 auto;padding:24px}
-    header.hero{background:linear-gradient(135deg, rgba(255,64,129,0.75), rgba(156,39,176,0.75), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1554861694-64c9b6f6b4a6?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;color:#fff;padding:72px 0}
-    header .brand{display:flex;align-items:center;gap:12px}
-    .brand h1{margin:0;font-size:28px}
-    .brand h2{margin:0;font-size:20px;color:#111;font-weight:800;letter-spacing:0.2px}
-    .hero-content{display:flex;align-items:center;justify-content:space-between;gap:40px}
-    .hero-left{max-width:640px;flex:1}
-    .hero-right{flex:1;max-width:500px;display:flex;align-items:center;justify-content:center}
-    .hero-image{width:100%;max-width:500px;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);border:4px solid rgba(255,255,255,0.2)}
-    .cta{display:inline-block;background:var(--accent);color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(255,64,129,0.3)}
-    .cta:hover{background:var(--accent-secondary);transform:translateY(-2px);box-shadow:0 6px 16px rgba(255,64,129,0.4)}
-    nav.top{background:rgba(255,255,255,0.98);backdrop-filter:blur(8px);position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(255,64,129,0.1);border-bottom:2px solid var(--accent-light)}
-    nav .navwrap{display:flex;align-items:center;justify-content:space-between;padding:9px 22px}
-    /* place brand on the left and links on the right; keep vertical centering */
-    .brand{display:flex;align-items:center;gap:12px;position:static;transform:none}
-    .brand h2{text-align:left;font-size:20px;margin:0;font-weight:800;color:#111;letter-spacing:0.2px}
-    nav .links a{margin-left:18px;text-decoration:none;color:#222;font-weight:600;transition:color 0.3s ease;position:relative}
-    nav .links a:hover{color:var(--accent)}
-    nav .links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s ease}
-    nav .links a:hover::after{width:100%}
+nav{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(14px);
+  background: linear-gradient(to bottom, rgba(11,15,25,.82), rgba(11,15,25,.35));
+  border-bottom:1px solid var(--line);
+}
+.navwrap{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .logo{
+  width:40px;height:40px;border-radius:14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 12px 40px rgba(124,58,237,.25);
+}
+.brand h2{margin:0;font-size:16px;letter-spacing:.2px}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.links a{
+  padding:10px 12px;border-radius:12px;
+  color:var(--muted);
+  border:1px solid transparent;
+}
+.links a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.04)}
+.links a#open-book{
+  color:#0b0f19;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border:none;
+  box-shadow: 0 12px 40px rgba(255,77,141,.18);
+}
 
-    .grid{display:grid;gap:18px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(255,64,129,0.08);border:1px solid rgba(255,64,129,0.1);transition:all 0.3s ease}
-    .card:hover{box-shadow:0 8px 24px rgba(255,64,129,0.15);transform:translateY(-2px)}
-    .service{position:relative}
-    .service-icon{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg, var(--accent-light), rgba(255,64,129,0.1));display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:24px}
-    .service h3{margin-top:0;color:var(--accent);font-weight:700}
-    h2{color:var(--accent);font-weight:800;position:relative;display:inline-block}
-    h2::after{content:'';position:absolute;bottom:-4px;left:0;width:60px;height:3px;background:linear-gradient(90deg, var(--accent), var(--accent-secondary));border-radius:2px}
+header.hero{padding:54px 0 18px}
+.hero-content{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap:16px;
+  align-items:center;
+}
+.hero-left{
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border:1px solid var(--line);
+  border-radius: calc(var(--radius) + 6px);
+  padding:26px;
+  box-shadow: var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.hero-left:before{
+  content:"";
+  position:absolute; inset:-2px;
+  background: radial-gradient(600px 300px at 20% 10%, rgba(255,77,141,.35), transparent 55%),
+              radial-gradient(500px 260px at 80% 20%, rgba(124,58,237,.28), transparent 55%);
+  opacity:.55;
+  pointer-events:none;
+}
+.hero-left > *{position:relative}
+.hero-left p.muted:first-child{
+  display:inline-flex;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  width:fit-content;
+  margin:0 0 10px;
+}
+.hero-left h1{margin:10px 0 10px;font-size:46px;line-height:1.08;letter-spacing:-.8px}
+.hero-left p.muted{color:var(--muted);margin:0;max-width:66ch}
 
-    .pricing{display:flex;gap:16px;flex-wrap:wrap}
-    .price{flex:1;min-width:200px;position:relative;text-align:center}
-    .price-icon{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg, var(--accent), var(--accent-secondary));display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:28px;box-shadow:0 4px 12px rgba(255,64,129,0.2)}
-    .price h4{color:var(--accent);font-weight:700;margin-top:0}
-    .price strong{color:var(--accent-secondary);font-size:1.4em;display:block;margin-top:8px}
+.hero-left .cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 14px;margin-top:14px;
+  border-radius:14px;
+  font-weight:700;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  transition: transform .12s ease, background .12s ease;
+}
+.hero-left .cta:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
+.hero-left .cta#cta-book{
+  border:none;
+  color:#0b0f19;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)) !important;
+  margin-left:10px;
+}
 
-    .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
-    .contact-image{width:100%;height:200px;object-fit:cover;border-radius:12px;margin-top:12px;box-shadow:0 4px 12px rgba(255,64,129,0.1)}
+.hero-right{
+  border-radius: calc(var(--radius) + 6px);
+  border:1px solid var(--line);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.hero-image{width:100%;height:100%;max-height:360px;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.03)}
 
-    /* Services horizontal scroller */
-    .services-wrap{position:relative}
-    .services-row{display:flex;gap:18px;overflow-x:auto;padding:6px 6px 6px 6px;scroll-behavior:smooth}
-    /* hide native scrollbar */
-    .services-row::-webkit-scrollbar{display:none;height:0}
-    .services-row{-ms-overflow-style:none;scrollbar-width:none}
-    .services-row .card{min-width:260px;flex:0 0 auto}
-    .scroll-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:10px;border:0;background:var(--accent);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:8;opacity:0.9;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(255,64,129,0.3)}
-    .scroll-btn:hover{background:var(--accent-secondary);opacity:1;transform:translateY(-50%) scale(1.1)}
-    /* place buttons inside the services frame, overlaying content */
-    .scroll-btn.left{left:12px}
-    .scroll-btn.right{right:12px}
-    .scroll-btn:focus{outline:2px solid var(--accent)}
-    .services-wrap:hover .scroll-btn{opacity:1}
-    @media (max-width:900px){.scroll-btn.left{left:8px}.scroll-btn.right{right:8px}}
+main{padding:6px 0 44px}
+section{margin-top:26px}
+section h2{margin:0;font-size:26px;letter-spacing:-.2px}
+.muted{color:var(--muted)}
 
-    footer{padding:28px;text-align:center;color:var(--muted)}
+.services-row, .pricing, .testimonials{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.card{
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:18px;
+}
+.service-icon,.price-icon{font-size:26px;margin-bottom:10px}
+.service h3,.price h4{margin:0 0 6px}
+.card p{margin:0}
 
-    @media (max-width:900px){
-      .hero-content{flex-direction:column}
-      .hero-image{max-width:100%;height:300px;margin-top:20px}
-      .contact-grid{grid-template-columns:1fr}
-      .grid.cols-3{grid-template-columns:1fr}
-    }
+.img-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.img-card{margin:0}
+.img-card img{width:100%;height:170px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line)}
+.img-card figcaption{margin-top:8px;color:var(--muted);font-size:13px}
 
-    .muted{color:var(--muted)}
-    .center{text-align:center}
+.hours-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.hours-card{
+  background: rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:16px;
+}
+.hours-title{margin:0 0 10px}
+.day{color:var(--muted)}
+.time strong{color:var(--text)}
 
-    .faq-item{margin-bottom:8px}
-    .faq-item button{width:100%;text-align:left;padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:var(--card);color:inherit}
-    .faq-item .panel{display:none;padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);border-top:none;background:var(--card);color:inherit;font-size:18px;line-height:1.6}
+.contact-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+.contact-image{
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  overflow:hidden;
+  background: rgba(255,255,255,.04);
+}
+.contact-image iframe, .contact-image img{width:100%;height:100%;min-height:320px;border:0;display:block}
 
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px}
-    .modal.active{display:flex}
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .22s ease}
-    .modal.active{display:flex;opacity:1}
-    .modal .box{width:100%;max-width:520px;background:var(--card);color:inherit;padding:18px;border-radius:12px;box-shadow:0 30px 60px rgba(2,6,23,0.4);transform:translateY(6px);transition:transform .22s ease,opacity .22s ease}
-    .modal.active .box{transform:translateY(0)}
-    /* Booking form styles */
-    .booking-form input,.booking-form select,.booking-form textarea{width:100%;padding:10px;border:1px solid rgba(0,0,0,0.08);border-radius:8px;margin-top:8px;background:var(--card);color:inherit}
-    .booking-form select{appearance:auto;-webkit-appearance:auto}
-    .booking-form select option{background:var(--card);color:inherit}
-    /* Style native calendar picker indicator where possible */
-    input[type="datetime-local"]{background:var(--card);color:inherit}
-    input[type="datetime-local"]::-webkit-calendar-picker-indicator{filter:none;opacity:1;color:var(--muted);cursor:pointer}
-    /* Force native calendar icon to appear light on dark backgrounds */
-    input[type="datetime-local"]::-webkit-calendar-picker-indicator{
-      -webkit-filter: invert(1) brightness(2) saturate(0);
-      filter: invert(1) brightness(2) saturate(0);
-      opacity:1;
-    }
-    input[type="datetime-local"]:focus::-webkit-calendar-picker-indicator{
-      -webkit-filter: invert(1) brightness(2) saturate(0) drop-shadow(0 0 0 #fff);
-      filter: invert(1) brightness(2) saturate(0) drop-shadow(0 0 0 #fff);
-    }
-    input[type="datetime-local"]::-webkit-datetime-edit-text,input[type="datetime-local"]::-webkit-datetime-edit-month-field,input[type="datetime-local"]::-webkit-datetime-edit-day-field,input[type="datetime-local"]::-webkit-datetime-edit-year-field{color:inherit}
-    input[type="datetime-local"]::-moz-calendar-picker-indicator{filter:none;opacity:1;color:var(--muted);cursor:pointer}
-    input[type="datetime-local"]::-moz-calendar-picker-indicator{filter: invert(1) brightness(2) saturate(0);}
-    .booking-form input::placeholder,.booking-form textarea::placeholder{color:rgba(34,34,34,0.5)}
-    @media (prefers-color-scheme:dark){
-      .booking-form input::placeholder,.booking-form textarea::placeholder{color:rgba(230,238,240,0.45)}
-    }
-    .booking-form label{font-weight:600;margin-top:8px;display:block}
-    .booking-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
-    .btn-secondary{background:transparent;border:1px solid rgba(0,0,0,0.08);padding:10px 14px;border-radius:8px;color:inherit}
-    .field-error{color:#e91e63;font-size:13px;margin-top:6px;font-weight:600}
-    
-    /* Contact phone/name order and spacing */
-    .contact-phone{display:flex;align-items:center;gap:8px}
-    .contact-phone .phone-link{color:var(--accent);text-decoration:none;font-weight:400}
-    /* Make contact name match the visual weight of the 'Telefon' label */
-    .contact-phone .contact-name{color:inherit;font-weight:700;margin-left:8px}
+.phone-link{color:var(--text);text-decoration:underline;text-underline-offset:3px}
 
-    /* Opening hours styling (frame tuned) */
-    .hours-card{max-width:720px;margin:18px auto;padding:14px 18px;border-radius:12px;background:linear-gradient(135deg, var(--card), var(--accent-light));border:2px solid var(--accent-light);box-shadow:0 6px 18px rgba(255,64,129,0.12);text-align:center}
-    /* Title: white text with underline for emphasis */
-    .hours-title{
-      display:inline-block;
-      text-align:center;
-      margin:0 auto 12px;
-      font-size:20px;
-      font-weight:800;
-      color:#fff;
-      background:none;
-      padding:0;
-      border-radius:0;
-      text-decoration:underline;
-      text-decoration-color: rgba(255,255,255,0.95);
-      text-decoration-thickness:2px;
-      text-underline-offset:6px;
-      text-shadow:0 1px 0 rgba(0,0,0,0.12);
-    }
-    .hours-grid{display:grid;grid-template-columns:1fr auto;gap:8px 20px;align-items:center;max-width:520px;margin:8px auto 0;font-size:inherit}
-    .hours-grid .day{justify-self:start;color:inherit;font-size:inherit}
-    .hours-grid .time{justify-self:end;font-weight:600;color:inherit}
-    /* Highlight weekend rows subtly with accent color */
-    .hours-grid .day.weekend{color:var(--accent);font-weight:700}
-    .hours-grid .time.weekend{color:var(--accent);font-weight:700}
-    @media (max-width:480px){
-      .hours-grid{grid-template-columns:1fr;gap:6px 0;text-align:left;margin:8px 16px 0}
-      .hours-grid .time{justify-self:start}
-    }
+footer{border-top:1px solid var(--line);padding:18px 0;margin-top:28px;color:var(--muted);font-size:14px}
 
-    @media (prefers-color-scheme:dark){:root{--bg:#1a0f1a;--card:#2d1b2d;--accent:#ff6b9d;--muted:#b0a0b0;--accent-secondary:#ff4081;--accent-light:#3d2a3d}body{color:#e6eef0}}
-  </style>
+.modal{
+  position:fixed; inset:0;
+  display:none;
+  place-items:center;
+  background: rgba(0,0,0,.62);
+  backdrop-filter: blur(8px);
+  z-index:100;
+  padding:18px;
+}
+.modal.active{display:grid}
+.box{
+  width:min(560px, calc(100vw - 28px));
+  background: rgba(15,23,42,.92);
+  border:1px solid var(--line);
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow);
+  padding:18px;
+}
+.box h3{margin:0 0 10px}
+.booking-form label{display:block;margin-top:12px;color:var(--muted);font-weight:700;font-size:13px}
+.booking-form input,.booking-form select,.booking-form textarea{
+  width:100%;
+  margin-top:7px;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  color:var(--text);
+  outline:none;
+}
+.booking-form textarea{min-height:92px;resize:vertical}
+.booking-form small.muted{display:block;margin-top:8px}
+.booking-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:14px}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background: transparent;
+  color:var(--text);
+  font-weight:700;
+  cursor:pointer;
+}
+.btn-secondary:hover{background: rgba(255,255,255,.06)}
+.field-error{color:#ff93b6;margin-top:6px;font-size:13px}
+
+.toast{
+  position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+  background: rgba(15,23,42,.96);
+  border:1px solid var(--line);
+  padding:12px 14px;
+  border-radius: 14px;
+  color:var(--text);
+  display:none;
+  box-shadow: var(--shadow);
+  z-index:120;
+}
+.toast.show{display:block}
+
+@media (max-width: 920px){
+  .hero-content{grid-template-columns:1fr}
+  .hero-left h1{font-size:38px}
+  .services-row,.pricing,.testimonials,.hours-grid,.contact-grid,.img-row{grid-template-columns:1fr}
+  .links{display:none}
+}
+
+
+/* --- Slider (Služby / Ceník) --- */
+.services-wrap, .pricing-wrap{position:relative}
+.services-row, .pricing{
+  display:flex !important;
+  gap:12px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:2px 2px 10px;
+}
+.services-row::-webkit-scrollbar, .pricing::-webkit-scrollbar{height:8px}
+.services-row::-webkit-scrollbar-thumb, .pricing::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.14);
+  border-radius:999px;
+}
+.services-row > .card, .pricing > .card{
+  scroll-snap-align:start;
+  min-width: 280px;
+  flex: 0 0 auto;
+}
+.scroll-btn{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  width:40px;height:40px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(15,23,42,.78);
+  color: var(--text);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  box-shadow: var(--shadow);
+}
+.scroll-btn.left{left:-10px}
+.scroll-btn.right{right:-10px}
+.scroll-btn:hover{background: rgba(255,255,255,.10)}
+@media (max-width:920px){
+  .scroll-btn{display:none}
+  .services-row > .card, .pricing > .card{min-width: 78vw}
+}
+
+/* --- Contact layout fixes --- */
+img.contact-image{
+  width:100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  display:block;
+  margin-top:12px;
+}
+.contact-details{
+  margin-top:14px;
+  display:grid;
+  gap:10px;
+}
+.contact-row{
+  display:grid;
+  grid-template-columns: 110px 1fr;
+  gap:12px;
+  padding:12px 14px;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+}
+.contact-label{color:var(--muted);font-weight:700}
+.contact-value{color:var(--text)}
+.contact-value a.phone-link{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+
+/* --- Opening hours card centered + smaller --- */
+#oteviraci-doba .hours-card{
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* --- Hero full-width centered (no image) --- */
+.hero-content{
+  grid-template-columns: 1fr !important;
+}
+header.hero{padding:64px 0 22px}
+.hero-left{
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-left p.muted:first-child{margin-left:auto;margin-right:auto}
+.hero-left .cta{margin-top:16px}
+.hero-left .cta#cta-book{margin-left:10px}
+
+/* --- Slider arrows alignment (Služby) --- */
+.services-wrap{position:relative}
+.services-wrap .scroll-btn{
+  top: 50%;
+}
+.services-row{
+  padding-bottom: 2px !important;
+  align-items: stretch;
+}
+
+/* --- Contact: no extra framed rows, just spacing --- */
+.contact-row{
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+.contact-details{gap:12px}
+.contact-label{font-weight:700}
+.contact-value{color:var(--text)}
+.contact-row + .contact-row{margin-top:10px}
+
+/* --- Opening hours: center text + highlight weekend --- */
+#oteviraci-doba .hours-card{
+  text-align:center;
+}
+#oteviraci-doba .hours-card .hours-title{margin:0 0 12px}
+#oteviraci-doba .hours-card .day{display:block;font-weight:700;color:var(--muted);margin-bottom:6px}
+#oteviraci-doba .hours-card .time{font-size:18px}
+#oteviraci-doba .hours-card.weekend{
+  border-color: rgba(255,77,141,.55);
+  background: radial-gradient(500px 260px at 30% 10%, rgba(255,77,141,.18), transparent 55%),
+              rgba(255,255,255,.05);
+}
+
+/* --- Theme toggle --- */
+.theme-toggle{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(15,23,42,.80);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  z-index: 130;
+}
+.theme-toggle:hover{background: rgba(255,255,255,.10)}
+body.theme-light{
+  --bg:#f7f8fc;
+  --panel: rgba(11,15,25,.04);
+  --text:#0b0f19;
+  --muted: rgba(11,15,25,.65);
+  --line: rgba(11,15,25,.14);
+  --shadow: 0 18px 60px rgba(0,0,0,.18);
+  background:
+    radial-gradient(1200px 700px at 10% 10%, rgba(124,58,237,.16), transparent 55%),
+    radial-gradient(900px 600px at 90% 15%, rgba(255,77,141,.14), transparent 55%),
+    radial-gradient(900px 700px at 50% 110%, rgba(34,211,238,.08), transparent 60%),
+    var(--bg);
+}
+body.theme-light nav{
+  background: linear-gradient(to bottom, rgba(247,248,252,.92), rgba(247,248,252,.70));
+}
+body.theme-light .hero-left:before{opacity:.22}
+body.theme-light .card,
+body.theme-light .hero-left,
+body.theme-light .hours-card,
+body.theme-light .box{
+  background: rgba(11,15,25,.03);
+}
+body.theme-light .links a#open-book{color:#fff}
+body.theme-light .theme-toggle{background: rgba(247,248,252,.92)}
+
+
+/* --- Hours: highlight weekend rows --- */
+.hours-grid .day.weekend, .hours-grid .time.weekend{
+  color: var(--text);
+}
+.hours-grid .day.weekend{
+  font-weight: 800;
+}
+.hours-grid .time.weekend{
+  border: 1px solid rgba(255,77,141,.35);
+  background: radial-gradient(500px 260px at 30% 10%, rgba(255,77,141,.16), transparent 55%),
+              rgba(255,255,255,.04);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+/* --- Footer centered --- */
+footer.footer-center{ text-align:center; }
+footer.footer-center .container{ display:flex; justify-content:center; }
+
+
+
+
+/* === Slider (Služby / Ceník) – reliable === */
+.services-wrap, .pricing-wrap{position:relative;margin-top:12px}
+.services-row, .pricing{
+  display:flex !important;
+  gap:12px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:2px 2px 10px;
+}
+.services-row > .card, .pricing > .card{
+  scroll-snap-align:start;
+  min-width:280px;
+  flex:0 0 auto;
+}
+.services-row::-webkit-scrollbar, .pricing::-webkit-scrollbar{height:8px}
+.services-row::-webkit-scrollbar-thumb, .pricing::-webkit-scrollbar-thumb{background: rgba(255,255,255,.14); border-radius:999px}
+
+.scroll-btn{
+  position:absolute;
+  left:auto; right:auto;
+  width:40px;height:40px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(15,23,42,.78);
+  color: var(--text);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  box-shadow: var(--shadow);
+  z-index: 5;
+}
+.scroll-btn.left{left:-10px}
+.scroll-btn.right{right:-10px}
+.scroll-btn:hover{background: rgba(255,255,255,.10)}
+@media (max-width:920px){
+  .scroll-btn{display:none}
+  .services-row > .card, .pricing > .card{min-width:78vw}
+}
+
+/* === Otevírací doba – víkend růžově (jako na obrázku) === */
+.hours-grid .day.weekend,
+.hours-grid .time.weekend{
+  color: var(--accent) !important;
+  font-weight: 800;
+}
+.hours-grid .time.weekend{
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* === Theme toggle + light theme === */
+.theme-toggle{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(15,23,42,.80);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  z-index: 130;
+}
+.theme-toggle:hover{background: rgba(255,255,255,.10)}
+
+body.theme-light{
+  --bg:#f7f8fc;
+  --panel: rgba(11,15,25,.04);
+  --text:#0b0f19;
+  --muted: rgba(11,15,25,.65);
+  --line: rgba(11,15,25,.14);
+  --shadow: 0 18px 60px rgba(0,0,0,.18);
+  background:
+    radial-gradient(1200px 700px at 10% 10%, rgba(124,58,237,.16), transparent 55%),
+    radial-gradient(900px 600px at 90% 15%, rgba(255,77,141,.14), transparent 55%),
+    radial-gradient(900px 700px at 50% 110%, rgba(34,211,238,.08), transparent 60%),
+    var(--bg);
+}
+body.theme-light nav{
+  background: linear-gradient(to bottom, rgba(247,248,252,.92), rgba(247,248,252,.70));
+}
+body.theme-light .hero-left:before{opacity:.22}
+body.theme-light .card,
+body.theme-light .hero-left,
+body.theme-light .hours-card,
+body.theme-light .box{
+  background: rgba(11,15,25,.03);
+}
+body.theme-light .links a#open-book{color:#fff}
+body.theme-light .theme-toggle{background: rgba(247,248,252,.92)}
+
+/* === Jak to funguje === */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.step{position:relative;padding-top:18px}
+.step-badge{
+  position:absolute;top:14px;right:14px;
+  width:34px;height:34px;border-radius:999px;
+  display:grid;place-items:center;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  font-weight:800;
+}
+.how-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <nav class="top">
-    <div class="navwrap container">
-      <div class="brand">
-        <h2>Masážní salón Body Balance</h2>
-      </div>
-      <div class="links">
-        <a href="#sluzby">Služby</a>
-        <a href="#cenik">Ceník</a>
-        <a href="#oteviraci-doba">Otevírací doba</a>
-        <a href="#kontakt">Kontakt</a>
-        <a href="#kontakt" id="open-book">Rezervace</a>
-      </div>
-    </div>
-  </nav>
+<nav class="top">
+<div class="navwrap container">
+<div class="brand">
+<h2>Body Balance</h2>
+</div>
+<div class="links"><a href="#sluzby">Služby</a><a href="#cenik">Ceník</a><a href="#kontakt">Kontakt</a><a href="#reference">Hodnocení</a><a href="#oteviraci-doba">Otevírací doba</a><a href="#jak-to-funguje">Jak to funguje</a><a href="#kontakt" id="open-book">Rezervace</a></div>
+</div>
+</nav>
+<header class="hero" role="banner">
+<div class="container hero-content">
+<div class="hero-left">
+<p class="muted">Masáže • Regenerace • Péče o tělo v Říčanech</p>
+<h1 style="">Body Balance Říčany</h1>
+<p class="muted">Příjemné prostředí, férové ceny a online rezervace. Vyberte službu a termín během chvilky.</p>
+<div style="margin-top:18px">
+<a class="cta" href="#cenik">Prohlédnout ceník</a>
+<a class="cta" data-open-booking="1" href="#" id="cta-book" style="background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);margin-left:10px;border:2px solid rgba(255,255,255,0.3)">Rezervovat termín online</a>
+</div>
+</div>
+</div>
+</header>
+<main class="container">
+<section id="sluzby" style="margin-top:28px">
+<h2>Služby</h2><p class="muted">Vyberte si službu podle toho, co právě potřebujete.</p>
+<div class="services-wrap" style="margin-top:12px;position:relative">
+<button aria-label="Posunout vlevo" class="scroll-btn left">◀</button>
+<div class="services-row" tabindex="0">
+<div class="card service">
+<div class="service-icon">💆</div>
+<h3>Masáž zad — 60 min</h3>
+<p class="muted">Zaměřená na uvolnění zadních svalů a bolesti</p>
+</div>
+<div class="card service">
+<div class="service-icon">🧘</div>
+<h3>Celotělová masáž — 120 min</h3>
+<p class="muted">Komplexní masáž celého těla pro hlubokou regeneraci</p>
+</div>
+<div class="card service">
+<div class="service-icon">✨</div>
+<h3>Masáž šíje (límcová oblast) — 40 min</h3>
+<p class="muted">Zaměřeno na krční páteř a uvolnění napětí</p>
+</div>
+<div class="card service">
+<div class="service-icon">👶</div>
+<h3>Dětská masáž — 30–40 min</h3>
+<p class="muted">Jemná masáž vhodná pro děti</p>
+</div>
+<div class="card service">
+<div class="service-icon">🌊</div>
+<h3>Lymfodrenáž (přístroj 3v1) — 30 min</h3>
+<p class="muted">Profesionální lymfodrenážní přístroj 3v1 — InfraSauna &amp; EMS</p>
+</div>
+</div>
+<button aria-label="Posunout vpravo" class="scroll-btn right">▶</button>
+<div class="img-row"><figure class="img-card"><img alt="Péče o tělo" loading="lazy" src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&amp;fit=crop&amp;w=1400&amp;q=60"/><figcaption>Péče o tělo</figcaption></figure><figure class="img-card"><img alt="Uvolnění" loading="lazy" src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?auto=format&amp;fit=crop&amp;w=1400&amp;q=60"/><figcaption>Uvolnění</figcaption></figure><figure class="img-card"><img alt="Regenerace" loading="lazy" src="https://images.unsplash.com/photo-1522327646852-4e28586a40dd?auto=format&amp;fit=crop&amp;w=1400&amp;q=60"/><figcaption>Regenerace</figcaption></figure></div></div>
+</section>
+<section id="cenik" style="margin-top:28px">
+<h2>Ceník</h2>
+<div class="pricing-wrap" style="margin-top:12px;position:relative"><button aria-label="Posunout vlevo" class="scroll-btn left">◀</button><div class="pricing">
+<div class="card price">
+<div class="price-icon">💆</div>
+<h4>Masáž zad — 60 min</h4>
+<p><strong>600 Kč</strong></p>
+</div>
+<div class="card price">
+<div class="price-icon">🧘</div>
+<h4>Celotělová masáž — 120 min</h4>
+<p><strong>1100 Kč</strong></p>
+</div>
+<div class="card price">
+<div class="price-icon">✨</div>
+<h4>Masáž šíje (límcová oblast) — 40 min</h4>
+<p><strong>400 Kč</strong></p>
+</div>
+<div class="card price">
+<div class="price-icon">👶</div>
+<h4>Dětská masáž — 30–40 min</h4>
+<p><strong>300–400 Kč</strong></p>
+</div>
+<div class="card price">
+<div class="price-icon">🌊</div>
+<h4>Lymfodrenáž (přístroj 3v1) — 30 min</h4>
+<p><strong>400 Kč</strong></p>
+</div>
+</div><button aria-label="Posunout vpravo" class="scroll-btn right">▶</button></div>
+</section><section id="jak-to-funguje"><h2>Jak to funguje</h2><p class="muted">Objednání je rychlé. Stačí vybrat službu, datum a čas — potvrzení uvidíte hned.</p><div class="steps"><div class="card step"><div class="step-badge">1</div><h3>Vyberte službu</h3><p class="muted">Zvolte masáž a délku podle vašich potřeb.</p></div><div class="card step"><div class="step-badge">2</div><h3>Vyberte datum a čas</h3><p class="muted">Uvidíte jen volné termíny v otevírací době.</p></div><div class="card step"><div class="step-badge">3</div><h3>Potvrďte rezervaci</h3><p class="muted">Vyplňte jméno a telefon — rezervace se uloží a termín se zablokuje.</p></div></div></section>
+<section id="reference"><h2>Hodnocení zákazníků</h2><p class="muted">Krátké ohlasy od klientů – pro lepší představu, jak to u nás probíhá.</p><div class="testimonials"><div class="card testimonial"><p>„Příjemná atmosféra a hlavně výsledek. Po masáži zad jsem cítil úlevu už ten den.“</p><p class="muted">— Petr, Říčany</p></div><div class="card testimonial"><p>„Online rezervace je top. Vybrala jsem si termín za minutku a vše sedělo.“</p><p class="muted">— Jana, klientka</p></div><div class="card testimonial"><p>„Čisto, klid a profesionální přístup. Doporučuju i jako pravidelnou regeneraci.“</p><p class="muted">— Martin, klient</p></div></div></section><section id="kontakt" style="margin-top:28px">
+<h2>Kontakt</h2>
+<div class="contact-grid" style="margin-top:12px">
+<div>
+<div class="card">
+<h3>Kontakt</h3>
+<img alt="Masážní salón interiér" class="contact-image" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&amp;fit=crop&amp;w=1200&amp;q=70"/><div class="contact-details"><div class="contact-row"><div class="contact-label">Telefon</div><div class="contact-value"><a class="phone-link" href="tel:+420775436270">+420 775 436 270</a></div></div><div class="contact-row"><div class="contact-label">E‑mail</div><div class="contact-value">masaze@firma.cz</div></div><div class="contact-row"><div class="contact-label">Adresa</div><div class="contact-value">Černokostelecká 526/55a, 251 01 Říčany u Prahy</div></div></div>
+</div>
+</div>
+<div>
+<div class="card">
+<h3>Mapa</h3>
+<iframe height="300" loading="lazy" src="https://www.google.com/maps?q=Cernokostelecka+526%2F55a+251+01+Ricany+u+Prahy&amp;output=embed" style="border:0;border-radius:8px" width="100%"></iframe>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Opening hours (moved to page end) -->
+<div class="container">
+<section id="oteviraci-doba" style="margin-top:28px">
+<div class="card hours-card">
+<h3 class="hours-title">Otevírací doba</h3>
+<div class="hours-grid">
+<div class="day">Pondělí</div><div class="time">17:00 – 19:30</div>
+<div class="day">Úterý</div><div class="time">17:00 – 19:30</div>
+<div class="day">Středa</div><div class="time">17:00 – 19:30</div>
+<div class="day">Čtvrtek</div><div class="time">17:00 – 19:30</div>
+<div class="day">Pátek</div><div class="time">17:00 – 19:30</div>
+<div class="day weekend">Sobota</div><div class="time weekend">11:00 – 19:00</div>
+<div class="day weekend">Neděle</div><div class="time weekend">11:00 – 19:00</div>
+</div>
+</div>
+</section>
+</div>
+<footer class="footer-center">
+<div class="container">
+<p>© 2026 Masážní salón Body Balance. <span class="muted">Všechny práva vyhrazena.</span></p>
+<p class="muted">Malé podnikání — velká péče.</p>
+</div>
+</footer>
+<!-- Booking Modal -->
+<div aria-labelledby="booking-title" aria-modal="true" class="modal" id="booking-modal" role="dialog">
+<div class="box" role="document">
+<h3 id="booking-title">Objednávka / Rezervace</h3>
+<form class="booking-form" id="booking-form">
+<label for="b-name">Jméno a příjmení</label>
+<input id="b-name" name="name" placeholder="Vaše jméno" required="" type="text"/>
+<label for="b-phone">Telefon</label>
+<input id="b-phone" name="phone" placeholder="420 123 456 789" required="" type="tel"/>
+<label for="b-email">Email</label>
+<input id="b-email" name="email" placeholder="email@domena.cz" type="email"/>
+<label for="b-service">Služba</label>
+<select id="b-service" name="service">
+<option value="masaz-zad">Masáž zad — 60 min</option>
+<option value="celotelova">Celotělová masáž — 120 min</option>
+<option value="masaz-sije">Masáž šíje (límcová oblast) — 40 min</option>
+<option value="detska">Dětská masáž — 30–40 min</option>
+<option value="lymfodrenaz">Lymfodrenáž (přístroj 3v1) — 30 min</option>
+</select>
+<label for="b-date">Preferované datum / čas</label>
+<input id="b-date" name="date" required="" type="date"/><select id="b-time" name="time" required="required"><option value="">Vyberte čas</option></select><small class="muted">Časy se zobrazí podle otevírací doby a délky služby.</small>
+<label for="b-note">Poznámka</label>
+<textarea id="b-note" name="note" placeholder="Specifikujte prosím případné zdravotní omezení nebo přání" rows="3"></textarea>
+<div class="booking-actions"><button class="btn-secondary" id="download-csv" type="button">Stáhnout CSV</button>
+<button class="btn-secondary" id="booking-cancel" type="button">Zrušit</button>
+<button class="cta" type="submit">Odeslat objednávku</button>
+</div>
+</form>
+</div>
+</div>
+<script>// =========================
+// Body Balance – UI scripts
+// =========================
+window.addEventListener('DOMContentLoaded', () => {
+  // ---------- Helpers ----------
+  const $  = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-  <header class="hero" role="banner">
-    <div class="container hero-content">
-      <div class="hero-left">
-        <p class="muted">Profesionální péče | Certifikovaný terapeut</p>
-        <h1 style="font-size:44px;margin:8px 0 12px">Uvolni tělo, uklidni mysl — obnov energii</h1>
-        <p class="muted">Relaxační, léčebné a sportovní masáže na míru. Dárkové poukazy a dlouhodobá péče.</p>
-        <div style="margin-top:18px">
-          <a class="cta" href="#kontakt">Kontaktujte nás</a>
-          <a class="cta" id="cta-book" href="#kontakt" style="background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);margin-left:10px;border:2px solid rgba(255,255,255,0.3)">Objednat online</a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" alt="Relaxační masáž" class="hero-image">
-      </div>
-    </div>
-  </header>
+  // ---------- FAQ toggle ----------
+  $$('.faq-item button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const panel = btn.nextElementSibling;
+      if (panel) panel.style.display = expanded ? 'none' : 'block';
+    });
+  });
 
-  <main class="container">
-    <section id="sluzby" style="margin-top:28px">
-      <h2>Služby</h2>
-      <div class="services-wrap" style="margin-top:12px;position:relative">
-        <button class="scroll-btn left" aria-label="Posunout vlevo">◀</button>
-        <div class="services-row" tabindex="0">
-          <div class="card service">
-            <div class="service-icon">💆</div>
-            <h3>Masáž zad — 60 min</h3>
-            <p class="muted">Zaměřená na uvolnění zadních svalů a bolesti</p>
-          </div>
-          <div class="card service">
-            <div class="service-icon">🧘</div>
-            <h3>Celotělová masáž — 120 min</h3>
-            <p class="muted">Komplexní masáž celého těla pro hlubokou regeneraci</p>
-          </div>
-          <div class="card service">
-            <div class="service-icon">✨</div>
-            <h3>Masáž šíje (límcová oblast) — 40 min</h3>
-            <p class="muted">Zaměřeno na krční páteř a uvolnění napětí</p>
-          </div>
-          <div class="card service">
-            <div class="service-icon">👶</div>
-            <h3>Dětská masáž — 30–40 min</h3>
-            <p class="muted">Jemná masáž vhodná pro děti</p>
-          </div>
-          <div class="card service">
-            <div class="service-icon">🌊</div>
-            <h3>Lymfodrenáž (přístroj 3v1) — 30 min</h3>
-            <p class="muted">Profesionální lymfodrenážní přístroj 3v1 — InfraSauna &amp; EMS</p>
-          </div>
-        </div>
-        <button class="scroll-btn right" aria-label="Posunout vpravo">▶</button>
-      </div>
-    </section>
-
-    <section id="cenik" style="margin-top:28px">
-      <h2>Ceník</h2>
-      <div class="pricing" style="margin-top:12px">
-        <div class="card price">
-          <div class="price-icon">💆</div>
-          <h4>Masáž zad — 60 min</h4>
-          <p><strong>600 Kč</strong></p>
-        </div>
-        <div class="card price">
-          <div class="price-icon">🧘</div>
-          <h4>Celotělová masáž — 120 min</h4>
-          <p><strong>1100 Kč</strong></p>
-        </div>
-        <div class="card price">
-          <div class="price-icon">✨</div>
-          <h4>Masáž šíje (límcová oblast) — 40 min</h4>
-          <p><strong>400 Kč</strong></p>
-        </div>
-        <div class="card price">
-          <div class="price-icon">👶</div>
-          <h4>Dětská masáž — 30–40 min</h4>
-          <p><strong>300–400 Kč</strong></p>
-        </div>
-        <div class="card price">
-          <div class="price-icon">🌊</div>
-          <h4>Lymfodrenáž (přístroj 3v1) — 30 min</h4>
-          <p><strong>400 Kč</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt" style="margin-top:28px">
-      <h2>Kontakt</h2>
-      <div class="contact-grid" style="margin-top:12px">
-        <div>
-          <div class="card">
-            <h3>Kontakt</h3>
-            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=60" alt="Masážní salón interiér" class="contact-image">
-            <p class="contact-phone" style="margin-top:16px"><strong>Telefon:</strong><a class="phone-link" href="tel:+420775436270">+420 775 436 270</a><strong class="contact-name">Nataliia</strong></p>
-            <p><strong>Email:</strong> masaze@firma.cz</p>
-            <p><strong>Adresa:</strong> Černokostelecká 526/55a, 251&nbsp; 01 Říčany u Prahy</p>
-          </div>
-        </div>
-        <div>
-          <div class="card">
-            <h3>Mapa</h3>
-            <iframe src="https://www.google.com/maps?q=Cernokostelecka+526%2F55a+251+01+Ricany+u+Prahy&output=embed" width="100%" height="300" style="border:0;border-radius:8px" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-    <!-- Opening hours (moved to page end) -->
-    <div class="container">
-      <section id="oteviraci-doba" style="margin-top:28px">
-        <div class="card hours-card">
-          <h3 class="hours-title">Otevírací doba</h3>
-          <div class="hours-grid">
-            <div class="day">Pondělí</div><div class="time">17:00 – 19:30</div>
-            <div class="day">Úterý</div><div class="time">17:00 – 19:30</div>
-            <div class="day">Středa</div><div class="time">17:00 – 19:30</div>
-            <div class="day">Čtvrtek</div><div class="time">17:00 – 19:30</div>
-            <div class="day">Pátek</div><div class="time">17:00 – 19:30</div>
-            <div class="day weekend">Sobota</div><div class="time weekend">11:00 – 19:00</div>
-            <div class="day weekend">Neděle</div><div class="time weekend">11:00 – 19:00</div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-  <footer>
-    <div class="container">
-      <p>© 2025 Masážní salón Body Balance. <span class="muted">Všechny práva vyhrazena.</span></p>
-      <p class="muted">Malé podnikání — velká péče.</p>
-    </div>
-  </footer>
-
-  <!-- Booking Modal -->
-  <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
-    <div class="box" role="document">
-      <h3 id="booking-title">Objednávka / Rezervace</h3>
-      <form id="booking-form" class="booking-form">
-        <label for="b-name">Jméno a příjmení</label>
-        <input id="b-name" name="name" type="text" required placeholder="Vaše jméno">
-
-        <label for="b-phone">Telefon</label>
-        <input id="b-phone" name="phone" type="tel" required placeholder="420 123 456 789">
-
-        <label for="b-email">Email</label>
-        <input id="b-email" name="email" type="email" placeholder="email@domena.cz">
-
-        <label for="b-service">Služba</label>
-        <select id="b-service" name="service">
-          <option value="masaz-zad">Masáž zad — 60 min</option>
-          <option value="celotelova">Celotělová masáž — 120 min</option>
-          <option value="masaz-sije">Masáž šíje (límcová oblast) — 40 min</option>
-          <option value="detska">Dětská masáž — 30–40 min</option>
-          <option value="lymfodrenaz">Lymfodrenáž (přístroj 3v1) — 30 min</option>
-        </select>
-
-        <label for="b-date">Preferované datum / čas</label>
-        <input id="b-date" name="date" type="datetime-local" required>
-
-        <label for="b-note">Poznámka</label>
-        <textarea id="b-note" name="note" rows="3" placeholder="Specifikujte prosím případné zdravotní omezení nebo přání"></textarea>
-
-        <div class="booking-actions">
-          <button type="button" id="booking-cancel" class="btn-secondary">Zrušit</button>
-          <button type="submit" class="cta">Odeslat objednávku</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    document.querySelectorAll('.faq-item button').forEach(btn=>{btn.addEventListener('click', ()=>{const expanded=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!expanded));const panel=btn.nextElementSibling;panel.style.display=expanded?'none':'block';})});
-    // Smooth scroll for in-page anchors (works for #kontakt and other internal links)
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const target=document.querySelector(this.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}});});
-
-    // Booking modal behavior (enhanced implementation follows)
-      // Booking modal behavior + validation + submit (fetch with mailto fallback)
-      const bookingModal=document.getElementById('booking-modal');
-      const bookingForm=document.getElementById('booking-form');
-      const openBtns=[document.getElementById('cta-book'),document.getElementById('open-book')];
-      const mainContent=document.querySelector('main');
-      const BOOKING_ENDPOINT = ''; // <-- optionally set your API endpoint here (POST JSON)
-
-      function openBooking(){
-        bookingModal.classList.add('active');
-        if(mainContent) mainContent.setAttribute('aria-hidden','true');
-        setTimeout(()=>{const first=bookingModal.querySelector('input,select,textarea');if(first)first.focus();},50);
-        trapFocus(true);
-      }
-      function closeBooking(){
-        bookingModal.classList.remove('active');
-        if(mainContent) mainContent.removeAttribute('aria-hidden');
-        trapFocus(false);
-      }
-      openBtns.forEach(b=>{if(b) b.addEventListener('click',function(e){e.preventDefault();openBooking();});});
-      document.getElementById('booking-cancel').addEventListener('click',closeBooking);
-      bookingModal.addEventListener('click',function(e){if(e.target===bookingModal)closeBooking();});
-      document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBooking();});
-
-      // Simple validation helpers
-      function showError(field, msg){
-        let next = field.nextElementSibling;
-        if(next && next.classList.contains('field-error')){ next.textContent = msg; return }
-        const el = document.createElement('div'); el.className='field-error'; el.textContent=msg; field.parentNode.insertBefore(el, field.nextSibling);
-      }
-      function clearError(field){
-        let next = field.nextElementSibling; if(next && next.classList.contains('field-error')) next.remove();
-      }
-
-      // Focus trap implementation
-      let previouslyFocused = null;
-      function trapFocus(enable){
-        const focusable = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-        const modal = bookingModal;
-        if(enable){
-          previouslyFocused = document.activeElement;
-          const nodes = modal.querySelectorAll(focusable);
-          const first = nodes[0]; const last = nodes[nodes.length-1];
-          modal._trapHandler = function(e){
-            if(e.key === 'Tab'){
-              if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
-              else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
-            }
-          };
-          modal.addEventListener('keydown', modal._trapHandler);
-        } else {
-          if(modal._trapHandler) modal.removeEventListener('keydown', modal._trapHandler);
-          if(previouslyFocused) previouslyFocused.focus();
-        }
-      }
-
-      // Form submit: validate and send
-      bookingForm.addEventListener('submit', async function(e){
+  // ---------- Smooth scroll (ignore booking buttons) ----------
+  $$('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href') || '';
+      if (a.dataset.openBooking === '1' || a.id === 'cta-book' || a.id === 'open-book') return;
+      const target = $(href);
+      if (target) {
         e.preventDefault();
-        // clear previous errors
-        bookingForm.querySelectorAll('.field-error').forEach(n=>n.remove());
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 
-        const name = bookingForm.elements['name'];
-        const phone = bookingForm.elements['phone'];
-        const email = bookingForm.elements['email'];
-        const service = bookingForm.elements['service'];
-        const date = bookingForm.elements['date'];
-        const note = bookingForm.elements['note'];
+  // ---------- Toast ----------
+  const toast = (() => {
+    const el = document.createElement('div');
+    el.className = 'toast';
+    document.body.appendChild(el);
+    return {
+      show(msg) {
+        el.textContent = msg;
+        el.classList.add('show');
+        clearTimeout(el._t);
+        el._t = setTimeout(() => el.classList.remove('show'), 3200);
+      }
+    };
+  })();
 
-        let ok = true;
-        if(!name.value.trim()){ showError(name,'Vyplňte prosím jméno'); ok=false } else clearError(name);
-        const phoneVal = phone.value.trim();
-        if(!phoneVal){ showError(phone,'Vyplňte prosím telefon'); ok=false }
-        else if(!/^[0-9+ \-()]{6,20}$/.test(phoneVal)){ showError(phone,'Neplatné telefonní číslo'); ok=false } else clearError(phone);
-        if(email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){ showError(email,'Neplatný e‑mail'); ok=false } else clearError(email);
-        if(!date.value){ showError(date,'Vyberte prosím datum a čas'); ok=false } else clearError(date);
+  // ---------- Sliders (Služby / Ceník) ----------
+  function attachSlider(wrapSel, rowSel) {
+    const wrap = $(wrapSel);
+    if (!wrap) return;
+    const row = $(rowSel, wrap);
+    const left = $('.scroll-btn.left', wrap);
+    const right = $('.scroll-btn.right', wrap);
+    if (!row || !left || !right) return;
 
-        if(!ok) return;
+    const step = () => Math.max(260, Math.round(row.clientWidth * 0.85));
 
-        const payload = {
-          name: name.value.trim(), phone: phone.value.trim(), email: email.value.trim(), service: service.value, date: date.value, note: note.value.trim()
-        };
+    left.addEventListener('click', (e) => { e.preventDefault(); row.scrollBy({ left: -step(), behavior:'smooth' }); });
+    right.addEventListener('click', (e) => { e.preventDefault(); row.scrollBy({ left: step(), behavior:'smooth' }); });
 
-        try{
-          if(BOOKING_ENDPOINT){
-            const res = await fetch(BOOKING_ENDPOINT, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-            if(!res.ok) throw new Error('Chyba serveru');
-            alert('Objednávka byla odeslána. Děkujeme!');
-          } else {
-            // mailto fallback (opens email client)
-            const subject = encodeURIComponent('Nová rezervace - ' + payload.name);
-            let body = '';
-            body += 'Jméno: ' + payload.name + '\n';
-            body += 'Telefon: ' + payload.phone + '\n';
-            if(payload.email) body += 'Email: ' + payload.email + '\n';
-            body += 'Služba: ' + payload.service + '\n';
-            body += 'Datum/čas: ' + payload.date + '\n';
-            if(payload.note) body += '\nPoznámka:\n' + payload.note + '\n';
-            const mailto = 'mailto:?subject=' + subject + '&body=' + encodeURIComponent(body);
-            window.location.href = mailto;
-          }
-          console.log('Booking data:', payload);
-          bookingForm.reset();
-          closeBooking();
-        } catch(err){
-          alert('Nepodařilo se odeslat rezervaci. Zkuste to prosím později.');
-          console.error(err);
-        }
+    function update() {
+      const centerY = row.offsetTop + (row.offsetHeight / 2);
+      left.style.top = centerY + 'px';
+      right.style.top = centerY + 'px';
+
+      const max = row.scrollWidth - row.clientWidth;
+      const x = row.scrollLeft;
+      left.style.opacity = (x <= 2) ? '0.35' : '1';
+      right.style.opacity = (x >= max - 2) ? '0.35' : '1';
+      left.disabled = x <= 2;
+      right.disabled = x >= max - 2;
+    }
+
+    row.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    requestAnimationFrame(update);
+  }
+
+  attachSlider('.services-wrap', '.services-row');
+  attachSlider('.pricing-wrap', '.pricing');
+
+  // ---------- Theme toggle ----------
+  const themeBtn = $('#theme-toggle');
+  const THEME_KEY = 'bb_theme';
+
+  function setTheme(mode) {
+    document.body.classList.toggle('theme-light', mode === 'light');
+    if (themeBtn) themeBtn.textContent = (mode === 'light') ? '☀' : '☾';
+    localStorage.setItem(THEME_KEY, mode);
+  }
+
+  const saved = localStorage.getItem(THEME_KEY);
+  setTheme(saved === 'light' ? 'light' : 'dark');
+
+  themeBtn?.addEventListener('click', () => {
+    const isLight = document.body.classList.contains('theme-light');
+    setTheme(isLight ? 'dark' : 'light');
+  });
+
+  // ---------- Booking modal ----------
+  const bookingModal = $('#booking-modal');
+  const bookingForm  = $('#booking-form');
+
+  const openBtns = [$('#cta-book'), $('#open-book'), ...$$('[data-open-booking="1"]')].filter(Boolean);
+  const cancelBtn = $('#booking-cancel');
+
+  function openBooking() {
+    if (!bookingModal) return;
+    bookingModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    initDate();
+    refreshTimes(); // fetch from API
+  }
+  function closeBooking() {
+    if (!bookingModal) return;
+    bookingModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  openBtns.forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); openBooking(); }));
+  cancelBtn?.addEventListener('click', (e) => { e.preventDefault(); closeBooking(); });
+
+  bookingModal?.addEventListener('click', (e) => { if (e.target === bookingModal) closeBooking(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBooking(); });
+
+  // ---------- Booking (API mode) ----------
+  const elName   = $('#b-name');
+  const elPhone  = $('#b-phone');
+  const elEmail  = $('#b-email');
+  const elService= $('#b-service');
+  const elDate   = $('#b-date');
+  const elTime   = $('#b-time');
+  const elNote   = $('#b-note');
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  function initDate(){
+    if (!elDate) return;
+    const today = new Date();
+    const min = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+    elDate.min = min;
+    if (!elDate.value) elDate.value = min;
+  }
+
+  // Basic validation errors
+  function showError(field, msg){
+    if (!field) return;
+    let next = field.nextElementSibling;
+    if (next && next.classList.contains('field-error')) { next.textContent = msg; return; }
+    const el = document.createElement('div');
+    el.className = 'field-error';
+    el.textContent = msg;
+    field.parentNode.insertBefore(el, field.nextSibling);
+  }
+  function clearError(field){
+    if (!field) return;
+    let next = field.nextElementSibling;
+    if (next && next.classList.contains('field-error')) next.remove();
+  }
+
+  async function fetchSlots(dateStr, serviceKey){
+    const url = `/api/availability?date=${encodeURIComponent(dateStr)}&serviceKey=${encodeURIComponent(serviceKey)}`;
+    const r = await fetch(url, { headers: { 'Accept':'application/json' } });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j?.error || 'Chyba při načítání dostupných termínů.');
+    return j.slots || [];
+  }
+
+  let _refreshToken = 0;
+
+  async function refreshTimes(){
+    if (!elDate || !elTime || !elService) return;
+    const dateStr = elDate.value;
+    const serviceKey = elService.value;
+
+    const token = ++_refreshToken;
+    const prev = elTime.value;
+
+    // loading state
+    elTime.innerHTML = '';
+    const optLoading = document.createElement('option');
+    optLoading.value = '';
+    optLoading.textContent = 'Načítám dostupné časy...';
+    elTime.appendChild(optLoading);
+    elTime.disabled = true;
+
+    try{
+      const slots = await fetchSlots(dateStr, serviceKey);
+      if (token != _refreshToken) return; // ignore stale
+
+      elTime.innerHTML = '';
+
+      const opt0 = document.createElement('option');
+      opt0.value = '';
+      opt0.textContent = slots.length ? 'Vyberte čas' : 'Pro tento den nejsou volné časy';
+      elTime.appendChild(opt0);
+
+      slots.forEach((s) => {
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = s;
+        elTime.appendChild(opt);
       });
 
-      // Services horizontal scroller
-      (function(){
-        const wrap = document.querySelector('.services-wrap');
-        if(!wrap) return;
-        const row = wrap.querySelector('.services-row');
-        const btnL = wrap.querySelector('.scroll-btn.left');
-        const btnR = wrap.querySelector('.scroll-btn.right');
-        const scrollAmount = Math.round((row.clientWidth || 600) * 0.7);
-        btnL.addEventListener('click', ()=> row.scrollBy({left: -scrollAmount, behavior:'smooth'}));
-        btnR.addEventListener('click', ()=> row.scrollBy({left: scrollAmount, behavior:'smooth'}));
-        // keyboard support when focused
-        row.addEventListener('keydown', (e)=>{
-          if(e.key === 'ArrowRight'){ e.preventDefault(); row.scrollBy({left: 260, behavior:'smooth'}); }
-          if(e.key === 'ArrowLeft'){ e.preventDefault(); row.scrollBy({left: -260, behavior:'smooth'}); }
-        });
-        // hide buttons if not scrollable
-        function updateButtons(){
-          if(row.scrollWidth <= row.clientWidth){ btnL.style.display = 'none'; btnR.style.display='none'; }
-          else { btnL.style.display='flex'; btnR.style.display='flex'; }
-        }
-        window.addEventListener('resize', updateButtons);
-        updateButtons();
-      })();
+      elTime.disabled = slots.length === 0;
 
-    
-  </script>
-</body>
+      if (slots.includes(prev)) elTime.value = prev;
+    } catch(err){
+      if (token != _refreshToken) return;
+      elTime.innerHTML = '';
+      const optErr = document.createElement('option');
+      optErr.value = '';
+      optErr.textContent = 'Nepodařilo se načíst termíny';
+      elTime.appendChild(optErr);
+      elTime.disabled = true;
+      toast.show(err.message || 'Chyba při načítání termínů.');
+    }
+  }
+
+  elDate?.addEventListener('change', () => { clearError(elTime); refreshTimes(); });
+  elService?.addEventListener('change', () => { clearError(elTime); refreshTimes(); });
+
+  bookingForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    [elName, elPhone, elDate, elTime].forEach(clearError);
+
+    const name = (elName?.value || '').trim();
+    const phone = (elPhone?.value || '').trim();
+    const email = (elEmail?.value || '').trim();
+    const serviceKey = elService?.value || '';
+    const serviceName = elService?.options?.[elService.selectedIndex]?.textContent?.trim() || '';
+    const dateStr = elDate?.value || '';
+    const timeStr = elTime?.value || '';
+    const note = (elNote?.value || '').trim();
+
+    if (name.length < 3) { showError(elName, 'Zadejte prosím celé jméno.'); return; }
+    if (phone.length < 6) { showError(elPhone, 'Zadejte prosím telefon.'); return; }
+    if (!dateStr) { showError(elDate, 'Vyberte datum.'); return; }
+    if (!timeStr) { showError(elTime, 'Vyberte čas.'); return; }
+
+    try{
+      const r = await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
+        body: JSON.stringify({
+          name, phone, email,
+          serviceKey,
+          serviceName,
+          date: dateStr,
+          startTime: timeStr,
+          note
+        })
+      });
+      const j = await r.json();
+
+      if (!r.ok){
+        if (r.status === 409){
+          showError(elTime, 'Tento termín už je obsazený. Vyberte jiný čas.');
+          await refreshTimes();
+          return;
+        }
+        throw new Error(j?.error || 'Rezervaci se nepodařilo odeslat.');
+      }
+
+      toast.show('Rezervace potvrzena ✅');
+      bookingForm.reset();
+      initDate();
+      await refreshTimes();
+      closeBooking();
+    } catch(err){
+      toast.show(err.message || 'Rezervaci se nepodařilo odeslat.');
+    }
+  });
+});</script>
+<button aria-label="Přepnout světlý/tmavý motiv" class="theme-toggle" id="theme-toggle" type="button">☾</button></body>
 </html>
