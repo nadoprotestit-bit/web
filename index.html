@@ -551,6 +551,40 @@ body.theme-light .theme-toggle{background: rgba(247,248,252,.92)}
 }
 .how-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 @media (max-width:900px){.steps{grid-template-columns:1fr}}
+
+
+/* === Booking modal layout fix === */
+#booking-modal .modal-card{
+  max-height: 86vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+#booking-modal .modal-card form{
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+#booking-modal .booking-fields{
+  overflow:auto;
+  padding-right: 4px;
+  min-height:0;
+}
+#booking-modal .booking-actions{
+  position: sticky;
+  bottom: 0;
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  padding: 12px 0 0;
+  margin-top: 10px;
+  background: linear-gradient(to top, rgba(10,12,18,.92), rgba(10,12,18,.0));
+  backdrop-filter: blur(6px);
+}
+#booking-modal .booking-actions .btn{min-width: 140px;}
+#booking-modal textarea{min-height:120px;max-height:220px;}
+/* Hide admin-only controls in public UI */
+.admin-only{display:none !important;}
 </style>
 </head>
 <body>
@@ -686,29 +720,29 @@ body.theme-light .theme-toggle{background: rgba(247,248,252,.92)}
 <div class="box" role="document">
 <h3 id="booking-title">Objednávka / Rezervace</h3>
 <form class="booking-form" id="booking-form">
-<label for="b-name">Jméno a příjmení</label>
-<input id="b-name" name="name" placeholder="Vaše jméno" required="" type="text"/>
-<label for="b-phone">Telefon</label>
-<input id="b-phone" name="phone" placeholder="420 123 456 789" required="" type="tel"/>
-<label for="b-email">Email</label>
-<input id="b-email" name="email" placeholder="email@domena.cz" type="email"/>
-<label for="b-service">Služba</label>
-<select id="b-service" name="service">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="booking-fields"><label for="b-name">Jméno a příjmení</label><input id="b-name" name="name" placeholder="Vaše jméno" required="" type="text"/><label for="b-phone">Telefon</label><input id="b-phone" name="phone" placeholder="420 123 456 789" required="" type="tel"/><label for="b-email">Email</label><input id="b-email" name="email" placeholder="email@domena.cz" type="email"/><label for="b-service">Služba</label><select id="b-service" name="service">
 <option value="masaz-zad">Masáž zad — 60 min</option>
 <option value="celotelova">Celotělová masáž — 120 min</option>
 <option value="masaz-sije">Masáž šíje (límcová oblast) — 40 min</option>
 <option value="detska">Dětská masáž — 30–40 min</option>
 <option value="lymfodrenaz">Lymfodrenáž (přístroj 3v1) — 30 min</option>
-</select>
-<label for="b-date">Preferované datum / čas</label>
-<input id="b-date" name="date" required="" type="date"/><select id="b-time" name="time" required="required"><option value="">Vyberte čas</option></select><small class="muted">Časy se zobrazí podle otevírací doby a délky služby.</small>
-<label for="b-note">Poznámka</label>
-<textarea id="b-note" name="note" placeholder="Specifikujte prosím případné zdravotní omezení nebo přání" rows="3"></textarea>
-<div class="booking-actions"><button class="btn-secondary" id="download-csv" type="button">Stáhnout CSV</button>
-<button class="btn-secondary" id="booking-cancel" type="button">Zrušit</button>
-<button class="cta" type="submit">Odeslat objednávku</button>
-</div>
-</form>
+</select><label for="b-date">Preferované datum / čas</label><input id="b-date" name="date" required="" type="date"/><select id="b-time" name="time" required="required"><option value="">Vyberte čas</option></select><small class="muted">Časy se zobrazí podle otevírací doby a délky služby.</small><label for="b-note">Poznámka</label><textarea id="b-note" name="note" placeholder="Specifikujte prosím případné zdravotní omezení nebo přání" rows="3"></textarea><div class="booking-actions">
+
+
+</div></div><div class="booking-actions"><button class="btn-secondary admin-only" id="download-csv" type="button">Stáhnout CSV</button><button class="btn-secondary" id="booking-cancel" type="button">Zrušit</button><button class="cta" type="submit">Odeslat objednávku</button></div></form>
 </div>
 </div>
 <script>// =========================
