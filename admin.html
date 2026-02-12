@@ -162,6 +162,7 @@ button {
           <th>Telefon</th>
           <th>Email</th>
           <th>Služba</th>
+          <th>Poznámka</th>
           <th>Akce</th>
         </tr>
       </thead>
@@ -228,16 +229,17 @@ function render(items){
     }
 
     tr.innerHTML = `
-      <td><b>${item.startTime}</b></td>
-      <td>${item.name}</td>
-      <td>${item.phone}</td>
-      <td>${item.email || "-"}</td>
-      <td>${item.serviceName || item.serviceKey}</td>
-      <td>
-        <button class="cancel-btn" data-id="${item.bookingId}">
-          Zrušit
-        </button>
-      </td>
+        <td><b>${item.startTime}</b></td>
+    <td>${item.name}</td>
+    <td>${item.phone}</td>
+    <td>${item.email || "-"}</td>
+    <td>${item.serviceName || item.serviceKey}</td>
+    <td>${item.note ? item.note : "-"}</td>
+    <td>
+      <button class="cancel-btn" data-id="${item.bookingId}">
+        Zrušit
+      </button>
+    </td>
     `;
 
     tbody.appendChild(tr);
