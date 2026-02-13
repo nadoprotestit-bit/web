@@ -782,6 +782,55 @@ body.theme-light .booking-actions .btn-secondary:hover{
   border-color: rgba(11,15,25,.25);
 }
 
+
+/* --- Professional credential tag (Hero) --- */
+.hero-cred{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:.85rem;
+  font-weight:800;
+  color:var(--accent);
+  opacity:.95;
+  margin:0 0 12px 0;
+}
+
+
+
+/* Map embed responsiveness */
+.map-embed{width:100%;height:360px;border:0;border-radius:16px;display:block;}
+@media (max-width: 700px){.map-embed{height:260px;border-radius:14px;}}
+
+/* Contact – name next to phone */
+.contact-name{
+  margin-left:12px;
+  padding-left:12px;
+  border-left:1px solid rgba(255,255,255,0.18);
+  font-weight:700;
+  letter-spacing:.2px;
+  opacity:.9;
+  white-space:nowrap;
+}
+body.light .contact-name{
+  border-left:1px solid rgba(15,23,42,0.18);
+}
+@media (max-width: 520px){
+  .contact-row .contact-value{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+  }
+  .contact-name{
+    margin-left:0;
+    padding-left:0;
+    border-left:none;
+    opacity:.85;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -820,7 +869,7 @@ body.theme-light .booking-actions .btn-secondary:hover{
 <div class="hero-left">
 <p class="muted">Masáže • Regenerace • Péče o tělo v Říčanech</p>
 <h1 style="">Body Balance Říčany</h1>
-<p class="muted">Příjemné prostředí, férové ceny a online rezervace. Vyberte službu a termín během chvilky.</p>
+<p class="muted">Příjemné prostředí, férové ceny a online rezervace. <strong>Nataliia</strong> je <strong>magistra fyzioterapie</strong> – masáž u nás není jen relax, ale i cílená pomoc pro vaše tělo.</p>
 <div style="margin-top:18px">
 <a class="cta" href="#cenik">Prohlédnout ceník</a>
 <a class="cta" data-open-booking="1" href="#" id="cta-book" style="background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);margin-left:10px;border:2px solid rgba(255,255,255,0.3)">Rezervovat termín online</a>
@@ -899,13 +948,17 @@ body.theme-light .booking-actions .btn-secondary:hover{
 <div>
 <div class="card">
 <h3>Kontakt</h3>
-<img alt="Masážní salón interiér" class="contact-image" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&amp;fit=crop&amp;w=1200&amp;q=70"/><div class="contact-details"><div class="contact-row"><div class="contact-label">Telefon</div><div class="contact-value"><a class="phone-link" href="tel:+420775436270">+420 775 436 270</a></div></div><div class="contact-row"><div class="contact-label">E‑mail</div><div class="contact-value">masaze@firma.cz</div></div><div class="contact-row"><div class="contact-label">Adresa</div><div class="contact-value">Černokostelecká 526/55a, 251 01 Říčany u Prahy</div></div></div>
+<img alt="Masážní salón interiér" class="contact-image" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&amp;fit=crop&amp;w=1200&amp;q=70"/><div class="contact-details"><div class="contact-row"><div class="contact-label">Telefon</div><div class="contact-value"><a class="phone-link" href="tel:+420775436270">+420 775 436 270</a> <span class="contact-name">Nataliia</span></div></div><div class="contact-row"><div class="contact-label">E‑mail</div><div class="contact-value">masaze@firma.cz</div></div><div class="contact-row"><div class="contact-label">Adresa</div><div class="contact-value">Černokostelecká 526/55a, 251 01 Říčany u Prahy</div></div></div>
 </div>
 </div>
 <div>
 <div class="card">
 <h3>Mapa</h3>
-<iframe height="300" loading="lazy" src="https://www.google.com/maps?q=Cernokostelecka+526%2F55a+251+01+Ricany+u+Prahy&amp;output=embed" style="border:0;border-radius:8px" width="100%"></iframe>
+<iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2564.7528302116284!2d14.672182376088367!3d49.99724331989266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b8be01582bbb5%3A0x1250875f93598d14!2zxIxlcm5va29zdGVsZWNrw6EgNTI2LCAyNTEgMDEgxZjDrcSNYW55IHUgUHJhaHk!5e0!3m2!1sru!2scz!4v1770968938245!5m2!1sru!2scz" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Mapa – Body Balance Říčany"></iframe>
+            <!-- Tip: Pro 100% přesný embed z Google Maps můžeš nahradit URL v atributu src (Sdílet → Vložit mapu). -->
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn btn-secondary" target="_blank" rel="noopener" href="https://www.google.com/maps?q=Cernokostelecka+526%2F55a+251+01+Ricany+u+Prahy">Otevřít v Google Maps</a>
+            </div>
 </div>
 </div>
 </div>
